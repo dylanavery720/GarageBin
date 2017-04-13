@@ -18,6 +18,16 @@ app.get('/', (request, response) => {
   response.sendFile( __dirname + "/build" + "index.html" )
 })
 
+app.get('/api/v1/items/', (request, response) => {
+  database('items').select()
+  .then(function(items){
+    response.status(200).json(items);
+  })
+  .catch(function(error) {
+    console.error('somethings wrong with db')
+  });
+})
+
 app.post('/api/v1/items/', (request, response) => {
   const {name, reason, cleanliness} = request.body
   const item = { name, reason, cleanliness, created_at: new Date }
