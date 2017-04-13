@@ -8,15 +8,15 @@ const database = require('knex')(configuration);
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('build'));
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Garage Bin'
 
 
-// app.get('/', (request, response) => {
-//   response.sendFile( __dirname + "/public" + "index.html" )
-// })
+app.get('/', (request, response) => {
+  response.sendFile( __dirname + "/build" + "index.html" )
+})
 
 if (!module.parent) {
   app.listen(app.get('port'), () => {
