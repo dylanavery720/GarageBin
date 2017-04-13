@@ -1,0 +1,20 @@
+.top-shelf {
+  height: 50px;
+  display: block;
+  background: white;
+  border: 1px dotted black;
+}
+
+.middle-shelf {
+  height: 50px;
+  display: block;
+  background: salmon;
+  border: 1px dotted black;
+}
+
+.bottom-shelf {
+  height: 50px;
+  display: block;
+  background: sienna;
+  border: 1px dotted black;
+}

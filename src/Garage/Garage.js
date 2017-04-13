@@ -25,8 +25,26 @@ class Garage extends Component {
   }
 
   setItemCount(){
-    console.log(this.state.items)
-    this.setState({itemCount: this.state.items.length})
+    this.setState({itemCount: this.state.items.length}, () => this.cleanliness())
+  }
+
+  cleanliness(){
+    for(let i=0;i<=this.state.itemCount;i++){
+      let currentItem = this.state.items[i]
+      switch(currentItem.cleanliness) {
+        case 'sparkling':
+        this.setState({sparkling: currentItem})
+        break;
+        case 'dusty':
+        this.setState({dusty: currentItem})
+        break;
+        case 'rancid':
+        this.setState({rancid: currentItem})
+        break;
+        default:
+        break;
+      }
+    }
   }
 
   getItems(){
@@ -58,13 +76,13 @@ class Garage extends Component {
   }
 
   render() {
-    const {door} = this.state
+    const {door, items, rancid, dusty, sparkling} = this.state
     return (
       <div className="garage">
         {door &&
         <div className="garage-door">
           <p>Items: {this.state.itemCount}</p>
-          <Shelves items={this.state.items} />
+          <Shelves items={items} rancid={rancid} sparkling={sparkling} dusty={dusty} />
           <button onClick={this.openGarage.bind(this)}>Close</button>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <label>

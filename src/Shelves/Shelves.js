@@ -1,47 +1,48 @@
 import React, { Component } from 'react';
-// import './App.css';
+import './Shelves.css';
 import Item from '../Item/Item'
 
 
 class Shelves extends Component {
   constructor(){
     super()
-    this.state = {
-      sparkling: [],
-      dusty: [],
-      rancid: []
-    }
+    // this.state = {
+    //   sparkling: [],
+    //   dusty: [],
+    //   rancid: []
+    // }
   }
 
   componentDidMount(){
-    // this.countClean()
+    console.log(this.props.sparkling, 'comp')
   }
 
-  // countClean(){
-  //   const { items } = this.props
-  //   items.forEach(item => {
-  //     this.setState({[item.cleanliness]: [...this.state.item, item]})
-  //   })
-  // }
+  loadTop(){
+    return this.props.sparkling.map(item => {
+        return <p>{item.name}</p>
+    })
+  }
 
-  // loadTop(){
-  //   return this.state.sparkling.map(item => {
-  //       return <p>{item.name}</p>
-  //   })
-  // }
+  loadMiddle(){
+    return this.props.dusty.map(item => {
+      return <Item name={item.name}/>
+    })
+  }
 
-  // loadMiddle(){
-  //   return this.props.items.map(item => {
-  //     return <Item name={item.name}/>
-  //   })
-  // }
+  loadBottom() {
+    return this.props.rancid.map(item => {
+      return <Item name={item.name}/>
+    })
+  }
 
   render() {
+    const {sparkling, dusty, rancid} = this.props
+    console.log(dusty)
     return (
       <div className="shelves">
-        {/* <div className="top-shelf">{this.loadTop()}</div> */}
-        {/* <div className="middle-shelf">{this.loadMiddle()}</div> */}
-        {/* <div className="bottom-shelf">{this.loadBottom().bind(this)}</div> */}
+        <div className="top-shelf">{sparkling.length > 0 ? this.loadTop() : null}</div>
+        <div className="middle-shelf">{dusty.length > 0 ? this.loadMiddle() : null}</div>
+        <div className="bottom-shelf">{rancid.length > 0 ? this.loadBottom() : null}</div>
       </div>
     );
   }
