@@ -18,6 +18,21 @@ app.get('/', (request, response) => {
   response.sendFile( __dirname + "/build" + "index.html" )
 })
 
+app.post('/api/v1/items/', (request, response) => {
+  const {name, reason, cleanliness} = request.body
+  const item = { name, reason, cleanliness, created_at: new Date }
+  database('items').insert(item)
+  .then(function(){
+    database('items').select()
+    .then(function(items){
+      response.status(200).json(items);
+    })
+    .catch(function(error) {
+      console.error('somethings wrong with db')
+    });
+  })
+})
+
 if (!module.parent) {
   app.listen(app.get('port'), () => {
     console.log(`${app.locals.title} is running on ${app.get('port')}.`);
