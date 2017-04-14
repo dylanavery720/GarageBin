@@ -5,13 +5,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "enzyme": "^2.8.1",
-    "knex": "^0.12.9",
-    "pg": "^6.1.5",
     "react-scripts": "0.9.5"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
     "react": "^15.5.4",
+    "knex": "^0.12.9",
+    "pg": "^6.1.5",
     "react-dom": "^15.5.4",
     "express": "^4.15.2"
   },
