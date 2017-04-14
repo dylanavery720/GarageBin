@@ -8,43 +8,30 @@ class Garage extends Component {
     this.state = {
       door: false,
       items: [],
-      itemCount: 0
+      itemCount: 0,
+      rancid: [],
+      dusty: [],
+      sparkling: []
     }
   }
 
-  componentDidMount(){
-    this.getItems()
-  }
+  toggleClass(){
+  const node = document.querySelector('.grid')
+  node.classList.remove('grid');
+  node.classList.add('hidden');
+ }
 
   openGarage(){
     if(this.state.door) {
       this.setState({door: false})
     } else {
-      this.setState({door: true})
+      this.toggleClass()
+      this.setState({door: true}, () => this.getItems())
     }
   }
 
   setItemCount(){
-    this.setState({itemCount: this.state.items.length}, () => this.cleanliness())
-  }
-
-  cleanliness(){
-    for(let i=0;i<=this.state.itemCount;i++){
-      let currentItem = this.state.items[i]
-      switch(currentItem.cleanliness) {
-        case 'sparkling':
-        this.setState({sparkling: currentItem})
-        break;
-        case 'dusty':
-        this.setState({dusty: currentItem})
-        break;
-        case 'rancid':
-        this.setState({rancid: currentItem})
-        break;
-        default:
-        break;
-      }
-    }
+    this.setState({itemCount: this.state.items.length})
   }
 
   getItems(){
@@ -81,8 +68,8 @@ class Garage extends Component {
       <div className="garage">
         {door &&
         <div className="garage-door">
-          <p>Items: {this.state.itemCount}</p>
-          <Shelves items={items} rancid={rancid} sparkling={sparkling} dusty={dusty} />
+          <p className="item-count">Items: {this.state.itemCount}</p>
+          <Shelves items={items} />
           <button onClick={this.openGarage.bind(this)}>Close</button>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <label>
@@ -107,7 +94,17 @@ class Garage extends Component {
         </div>}
 
         {!door && <div className="garage-door-opener">
-          <button onClick={this.openGarage.bind(this)}>Open</button>
+          <div className="grid">
+            <div className="cell"></div>
+            <div className="cell"></div>
+            <div className="cell"></div>
+            <div className="cell"></div>
+            <div className="cell"><button onClick={this.openGarage.bind(this)}>Open</button></div>
+            <div className="cell"></div>
+            <div className="cell"></div>
+            <div className="cell"></div>
+            <div className="cell"></div>
+          </div>
         </div>}
       </div>
     );

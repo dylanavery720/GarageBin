@@ -4,6 +4,8 @@
   "private": true,
   "devDependencies": {
     "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
+    "enzyme": "^2.8.1",
     "express": "^4.15.2",
     "knex": "^0.12.9",
     "nodemon": "^1.11.0",

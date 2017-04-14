@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'test';
 
-const configuration = require('../knexfile')['test'];
+const configuration = require('./knexfile')['test'];
 const database = require('knex')(configuration);
 const chai = require('chai');
 
@@ -35,7 +35,7 @@ describe('Server', () => {
   it('should exist', () => {
     expect(app).to.exist;
   });
-
+})
   describe('GET /', () => {
     it('should return a 200 and html', (done) => {
       chai.request(app)
@@ -51,39 +51,41 @@ describe('Server', () => {
 
       //  ARTISTS TEST
 
-  describe('GET /api/v1/artists', () => {
-    it('should return all artists', (done) => {
+  describe('GET /api/v1/items', () => {
+    it('should return all items', (done) => {
       chai.request(app)
-      .get('/api/v1/artists')
+      .get('/api/v1/items')
       .end((err, res) => {
         if (err) { done(err); }
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(res.body).to.be.a('array');
-        expect(res.body.length).to.equal(30);
+        expect(res.body.length).to.equal(2);
         expect(res.body[0]).to.have.property('name');
         done();
       });
     });
   });
 
-  describe('POST /api/v1/artists', () => {
+  describe('POST /api/v1/items', () => {
   context('if POST is done properly', () => {
-    it('should add a new artist', (done) => {
+    it('should add a new item', (done) => {
       chai.request(app)
-        .post('/api/v1/artists')
+        .post('/api/v1/items')
         .send({
-          id: 31,
-          name: 'Muddy Waters'
+          id: 1,
+          name: 'Mud',
+          reason: 'Just Because',
+          cleanliness: 'sparkling'
         })
         .end((err, res) => {
           if (err) { done(err); }
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body).to.be.a('array');
-          expect(res.body.length).to.equal(31);
-          expect(res.body[30].name).to.equal('Muddy Waters');
-          expect(res.body[30].id).to.equal(31);
+          expect(res.body.length).to.equal(1);
+          expect(res.body[0].name).to.equal('Mudd');
+          expect(res.body[0].id).to.equal(1);
           done();
         });
     });
@@ -91,7 +93,7 @@ describe('Server', () => {
   context('if POST is not done properly', () => {
     it('should reject with a 404', (done) => {
       chai.request(app)
-        .post('/api/v1/artists')
+        .post('/api/v1/items')
         .send({
           nam: 'Muddy Waters',
           ido: 31
@@ -103,4 +105,4 @@ describe('Server', () => {
         });
     });
   })
-});
+})

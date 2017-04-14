@@ -1,7 +1,8 @@
 .top-shelf {
   height: 50px;
   display: block;
-  background: white;
+  background: lavender;
+  color:black;
   border: 1px dotted black;
 }
 
@@ -17,4 +18,20 @@
   display: block;
   background: sienna;
   border: 1px dotted black;
+}
+
+h2 {
+  font-family: monospace;
+  color: yellowgreen;
+  border-bottom: 1px solid orange;
+}
+
+.item-names{
+  font-family: cursive;
+  color: white;
+  box-shadow: rgba(255, 0, 0, 0.5);
+  font-size: 18px;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
 }
