@@ -15,7 +15,7 @@ app.locals.title = 'Garage Bin'
 
 
 app.get('/', (request, response) => {
-  response.sendFile("/build/" + "index.html")
+  response.sendFile( __dirname + "/build/" + "index.html" )
 })
 
 app.get('/api/v1/items/', (request, response) => {
