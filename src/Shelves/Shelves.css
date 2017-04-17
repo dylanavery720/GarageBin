@@ -32,9 +32,11 @@ h2 {
   box-shadow: rgba(255, 0, 0, 0.5);
   font-size: 18px;
   display: inline-block;
-  margin: 2px;
+  margin-right: 5px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
+
 .item-expanded{
   font-family: monospace;
   color: red;
@@ -43,6 +45,7 @@ h2 {
   display: inline-block;
   margin-left: 150px;
   margin-right: 150px;
+  margin-bottom: 20px;
   cursor: pointer;
   height: 500px;
   width: 500px;
