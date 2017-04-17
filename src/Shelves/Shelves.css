@@ -1,5 +1,5 @@
 .top-shelf {
-  height: 50px;
+  height: 101px;
   display: block;
   background: lavender;
   color:black;
@@ -7,14 +7,14 @@
 }
 
 .middle-shelf {
-  height: 50px;
+  height: 101px;
   display: block;
   background: salmon;
   border: 1px dotted black;
 }
 
 .bottom-shelf {
-  height: 51px;
+  height: 101px;
   display: block;
   background: sienna;
   border: 1px dotted black;
@@ -27,11 +27,34 @@ h2 {
 }
 
 .item-names{
-  font-family: cursive;
+  font-family: monospace;
   color: white;
   box-shadow: rgba(255, 0, 0, 0.5);
   font-size: 18px;
   display: inline-block;
-  margin: 5px;
+  margin: 2px;
   cursor: pointer;
+}
+.item-expanded{
+  font-family: monospace;
+  color: red;
+  box-shadow: rgba(255, 0, 0, 0.5);
+  font-size: 18px;
+  display: inline-block;
+  margin-left: 80px;
+  margin-right: 40px;
+  margin-top: 60px;
+  cursor: pointer;
+  height: 500px;
+  width: 500px;
+  z-index: 9999;
+}
+
+
+.number-clean{
+  float:left;
+}
+
+.sort-btn{
+  float:right;
 }

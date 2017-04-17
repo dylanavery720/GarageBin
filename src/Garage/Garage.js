@@ -17,7 +17,6 @@ class Garage extends Component {
 
   toggleClass(){
   const node = document.querySelector('.grid')
-  node.classList.remove('grid');
   node.classList.add('hidden');
  }
 
@@ -39,6 +38,19 @@ class Garage extends Component {
     .then(response => response.json())
     .then(data => this.setState({items: data}))
     .then(() => this.setItemCount())
+    .then(() => this.splitArray())
+  }
+
+  splitArray(){
+    let sparkling = []
+    let rancid = []
+    let dusty = []
+    this.state.items.forEach(item => {
+      item.cleanliness === 'dusty' ? dusty.push(item) : null
+      item.cleanliness === 'rancid' ? rancid.push(item) : null
+      item.cleanliness === 'sparkling' ? sparkling.push(item) : null
+    })
+    this.setState({sparkling: sparkling, rancid: rancid, dusty: dusty})
   }
 
   addItem(name, reason, cleanliness){
@@ -50,6 +62,7 @@ class Garage extends Component {
     .then(response => response.json())
     .then(data => this.setState({items: data}))
     .then(() => this.setItemCount())
+    .then(() => this.splitArray())
   }
 
   handleChange(e) {
@@ -62,14 +75,24 @@ class Garage extends Component {
     this.addItem(name, reason, cleanliness)
   }
 
+  sortItems(){
+    console.log('make a get request instead')
+  }
+
   render() {
     const {door, items, rancid, dusty, sparkling} = this.state
+    const itemForm = <select value={this.state.draftMessage} name="cleanliness" onChange={this.handleChange.bind(this)}>
+      <option disabled selected value> -- select an option -- </option>
+      <option value="sparkling">Sparkling</option>
+      <option value="dusty">Dusty</option>
+      <option value="rancid">Rancid</option>
+    </select>
     return (
       <div className="garage">
         {door &&
         <div className="garage-door">
           <p className="item-count">Items: {this.state.itemCount}</p>
-          <Shelves items={items} />
+          <Shelves items={items} rancid={rancid} dusty={dusty} sparkling={sparkling} sortItems={this.sortItems.bind(this)} />
           <button onClick={this.openGarage.bind(this)}>Close</button>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <label>

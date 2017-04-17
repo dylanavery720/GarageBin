@@ -7,51 +7,42 @@ class Shelves extends Component {
   constructor(){
     super()
     this.state = {
-      sparkling: 0,
-      dusty: 0,
-      rancid: 0,
-      fulldisplay: true
+      sparkling: [],
+      dusty: [],
+      rancid: [],
+      expanded: false
     }
   }
 
-  loadTop(){
-    return this.props.items.map(item => {
-      if(item.cleanliness === 'sparkling') {
-        return <p className="item-names" onClick={this.fullDisplay.bind(this)} id={item.cleanliness}>{item.name}</p>
-    }
+  loadItems(array){
+    return array.map(item => {
+        return <Item name={item.name} reason={item.reason} cleanliness={item.cleanliness} />
   })
 }
 
-  loadMiddle(){
-    return this.props.items.map(item => {
-      if(item.cleanliness === 'dusty') {
-        return <p className="item-names" onClick={this.fullDisplay.bind(this)} id={item.cleanliness} name={item.reason}>{item.name}</p>
-    }
-  })
-}
-
-  loadBottom() {
-    return this.props.items.map(item => {
-      if(item.cleanliness === 'rancid') {
-        return <p className="item-names" onClick={this.fullDisplay.bind(this)} id={item} value={item.reason}>{item.name}</p>
-    }
-  })
-}
-
-fullDisplay(e) {
-  console.log('Name', e.target.innerText, 'Reason:', e.target.id.reason, 'Cleanliness:', e.target.id.cleanliness)
-}
-
-  sorty(e){
-    e.target.children.sort()
-  }
 
   render() {
+    const { sparkling, dusty, rancid} = this.props
     return (
       <div className="shelves">
-        <div className="top-shelf" onClick={this.sorty.bind(this)}>{this.loadTop()}# {(e) => e.target.children.length}</div>
-        <div className="middle-shelf" onClick={this.sorty.bind(this)}>{this.loadMiddle()}# {(e) => e.target.children.length}</div>
-        <div className="bottom-shelf" onClick={this.sorty.bind(this)}>{this.loadBottom()} # {(e) => e.target.children.length}</div>
+          <div className="top-shelf">
+            <p className="number-clean">Number: {sparkling.length}</p>
+            <ul>
+              {this.loadItems(sparkling)}
+            </ul>
+          </div>
+          <div className="middle-shelf">
+            <p className="number-clean">Number: {dusty.length}</p>
+            <ul>
+              {this.loadItems(dusty)}
+            </ul>
+          </div>
+          <div className="bottom-shelf">
+            <p className="number-clean">Number: {sparkling.length}</p>
+            <ul>
+              {this.loadItems(rancid)}
+            </ul>
+          </div>
       </div>
     );
   }
