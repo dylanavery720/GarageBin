@@ -56,9 +56,10 @@ h2 {
 
 .number-clean{
   float:left;
-  color: red;
+  color: yellowgreen;
 }
 
 .sort-btn{
   float:right;
+  margin-bottom: 10px;
 }
