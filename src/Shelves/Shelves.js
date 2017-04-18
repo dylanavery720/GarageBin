@@ -30,21 +30,21 @@ class Shelves extends Component {
             <ul>
               {this.loadItems(sparkling)}
             </ul>
-            <button onClick={(e) => this.props.sortItems(sparkling)}>Sort</button>
+            <button className="sort-btn" onClick={(e) => this.props.sortItems(sparkling)}>Sort</button>
           </div>
           <div className="middle-shelf">
             <p className="number-clean">Number: {dusty.length}</p>
             <ul>
               {this.loadItems(dusty)}
             </ul>
-            <button onClick={(e) => this.props.sortItems(dusty)}>Sort</button>
+            <button className="sort-btn" onClick={(e) => this.props.sortItems(dusty)}>Sort</button>
           </div>
           <div className="bottom-shelf">
             <p className="number-clean">Number: {sparkling.length}</p>
             <ul>
               {this.loadItems(rancid)}
             </ul>
-            <button onClick={(e) => this.props.sortItems(rancid)}>Sort</button>
+            <button className="sort-btn" onClick={(e) => this.props.sortItems(rancid)}>Sort</button>
           </div>
       </div>
     );
