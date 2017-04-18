@@ -11,7 +11,8 @@ class Garage extends Component {
       itemCount: 0,
       rancid: [],
       dusty: [],
-      sparkling: []
+      sparkling: [],
+      sort: false
     }
   }
 
@@ -75,8 +76,22 @@ class Garage extends Component {
     this.addItem(name, reason, cleanliness)
   }
 
-  sortItems(){
-    console.log('make a get request instead')
+  sortItems(array){
+    console.log(array)
+    const { sort } = this.state
+    let newArray = array.sort((a, b) => {
+    var nameA = a.name.toLowerCase();
+    var nameB = b.name.toLowerCase();
+    if (nameA < nameB) {
+     return sort ? -1 : 1
+    }
+    if (nameA > nameB) {
+      return sort ? 1 : -1
+    }
+    return 0;
+  });
+    sort ? this.setState({sort: false}) : this.setState({sort: true})
+    this.setState({[array[0].cleanliness]: newArray})
   }
 
   render() {
