@@ -58,5 +58,5 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  transition: transform 3s ease-in-out;
+  transition: transform 3s ease-in;
 }
