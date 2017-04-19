@@ -58,5 +58,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  transition: transform 3s ease-in;
+  animation-duration: 3s;
+  animation-name: loading;
+  animation-iteration-count: infinite;
 }
